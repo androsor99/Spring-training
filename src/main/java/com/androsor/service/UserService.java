@@ -1,7 +1,7 @@
 package com.androsor.service;
 
-import com.androsor.repository.CompanyRepository;
-import com.androsor.repository.UserRepository;
+import com.androsor.database.repository.CompanyRepository;
+import com.androsor.database.repository.UserRepository;
 
 /**
  * The {@code UserService}

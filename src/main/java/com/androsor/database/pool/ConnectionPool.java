@@ -1,4 +1,4 @@
-package com.androsor.database;
+package com.androsor.database.pool;
 
 /**
  * The {@code ConnectionPool}

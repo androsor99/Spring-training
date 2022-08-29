@@ -1,6 +1,6 @@
-package com.androsor.repository;
+package com.androsor.database.repository;
 
-import com.androsor.database.ConnectionPool;
+import com.androsor.database.pool.ConnectionPool;
 
 /**
  * The {@code CompanyRepository}

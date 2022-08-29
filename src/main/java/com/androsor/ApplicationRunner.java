@@ -1,7 +1,9 @@
 package com.androsor;
 
+import com.androsor.database.pool.ConnectionPool;
 import com.androsor.ioc.Container;
 import com.androsor.service.UserService;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * The {@code ApplicationRunner}
@@ -13,19 +15,10 @@ import com.androsor.service.UserService;
 public class ApplicationRunner {
 
     public static void main(String[] args) {
-        var container = new Container();
-
-//        var connectionPool = new ConnectionPool();
-//        var userRepository = new UserRepository(connectionPool);
-//        var companyRepository = new CompanyRepository(connectionPool);
-//        var userService = new UserService(userRepository, companyRepository);
-
-//        var connectionPool = container.get(ConnectionPool.class);
-//        var userRepository = container.get(UserRepository.class);
-//        var companyRepository = container.get(CompanyRepository.class);
-
-        var userService = container.get(UserService.class);
-        // TODO: 26.08.2022 UserService
+        var context = new ClassPathXmlApplicationContext("application.xml");
+//      clazz -> String -> Map<String, Object>
+        var connectionPool = context.getBean("p1", ConnectionPool.class);
+        System.out.println(connectionPool);
     }
 }
 
