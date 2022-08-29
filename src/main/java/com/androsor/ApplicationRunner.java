@@ -1,6 +1,7 @@
 package com.androsor;
 
 import com.androsor.database.pool.ConnectionPool;
+import com.androsor.database.repository.CompanyRepository;
 import com.androsor.ioc.Container;
 import com.androsor.service.UserService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,6 +20,9 @@ public class ApplicationRunner {
 //      clazz -> String -> Map<String, Object>
         var connectionPool = context.getBean("p1", ConnectionPool.class);
         System.out.println(connectionPool);
+        var companyRepository = context.getBean("companyRepository", CompanyRepository.class);
+        System.out.println(companyRepository);
     }
 }
+
 
