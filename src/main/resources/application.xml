@@ -12,6 +12,9 @@
 <!--        <property name="locations" value="classpath:application.properties"/>-->
 <!--    </bean>-->
 
+    <bean class="com.androsor.bfpp.LogBeanFactoryPostProcessor"/>
+    <bean class="com.androsor.bfpp.VerifyPropertyBeanFactoryPostProcessor"/>
+
     <bean id="driverId" class="java.lang.String">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
