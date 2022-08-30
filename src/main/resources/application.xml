@@ -10,6 +10,8 @@
     <context:property-placeholder location="classpath:application.properties"/>
 
     <bean class="com.androsor.bpp.InjectBeanPostProcessor"/>
+    <bean class="com.androsor.bpp.TransactionBeanPostProcessor"/>
+    <bean class="com.androsor.bpp.AuditingBeanPostProcessor"/>
 
 <!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 

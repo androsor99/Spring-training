@@ -2,6 +2,7 @@ package com.androsor;
 
 import com.androsor.database.pool.ConnectionPool;
 import com.androsor.database.repository.CompanyRepository;
+import com.androsor.database.repository.CrudRepository;
 import com.androsor.ioc.Container;
 import com.androsor.service.UserService;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -31,8 +32,8 @@ public class ApplicationRunner {
             var connectionPool = context.getBean("p1", ConnectionPool.class);
             System.out.println(BeanFactoryPostProcessor.class.isAssignableFrom(connectionPool.getClass()));
             System.out.println(connectionPool);
-            var companyRepository = context.getBean("companyRepository", CompanyRepository.class);
-            System.out.println(companyRepository);
+            var companyRepository = context.getBean("companyRepository", CrudRepository.class);
+            System.out.println(companyRepository.findById(1));
         }
     }
 }
