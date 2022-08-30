@@ -8,6 +8,8 @@ import com.androsor.database.pool.ConnectionPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -23,6 +25,7 @@ import java.util.Optional;
  * @createDate 26.08.2022 22:45
  */
 //@Repository
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 @Transaction
 @Auditing
 public class CompanyRepository implements CrudRepository<Integer, Company> {

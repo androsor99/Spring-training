@@ -1,6 +1,8 @@
 package com.androsor.database.repository;
 
 import com.androsor.database.pool.ConnectionPool;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
  * @createDate 26.08.2022 22:47
  */
 @Repository
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 public class UserRepository {
 
     private final ConnectionPool connectionPool;
