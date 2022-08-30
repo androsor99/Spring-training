@@ -1,11 +1,12 @@
 package com.androsor.database.pool;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The {@code ConnectionPool}
@@ -14,39 +15,22 @@ import java.util.Map;
  * @version 1.0
  * @createDate 26.08.2022 22:43
  */
-public class ConnectionPool implements InitializingBean {
+@Component("pool1")
+public class ConnectionPool {
 
-    private String username;
-    private Integer poolSize;
-    private List<Object> args;
+    private final String username;
+    private final Integer poolSize;
 
-    private Map<String, Object> properties;
-
-    public ConnectionPool() {
-    }
-
-    public ConnectionPool(String username,
-                          Integer poolSize,
-                          List<Object> args,
-                          Map<String, Object> properties) {
+    @Autowired
+    public ConnectionPool(@Value("${db.username}") String username,
+                          @Value("${db.pool.size}") Integer poolSize) {
         this.username = username;
         this.poolSize = poolSize;
-        this.args = args;
-        this.properties = properties;
-    }
-
-    public void setProperties(Map<String, Object> properties) {
-        this.properties = properties;
     }
 
     @PostConstruct
     private void init() {
         System.out.println("Init connection poll");
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("Properties set");
     }
 
     @PreDestroy

@@ -2,6 +2,7 @@ package com.androsor.bpp;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @version 1.0
  * @createDate 30.08.2022 11:30
  */
+@Component
 public class AuditingBeanPostProcessor implements BeanPostProcessor {
 
     private final Map<String, Class<?>> auditBeans = new HashMap<>();

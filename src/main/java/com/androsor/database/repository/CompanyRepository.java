@@ -8,6 +8,7 @@ import com.androsor.database.pool.ConnectionPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -21,19 +22,23 @@ import java.util.Optional;
  * @version 1.0
  * @createDate 26.08.2022 22:45
  */
+@Repository
 @Transaction
 @Auditing
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
-//    @Resource(name = "pool1")
-//    @Autowired
-//    @Qualifier("pool1")
-    private ConnectionPool pool1;
-    @Autowired
-    private List<ConnectionPool> pools;
-
+    private final ConnectionPool pool1;
+    private final List<ConnectionPool> pools;
     @Value("${db.pool.size}")
-    private Integer poolSize;
+    private final Integer poolSize;
+
+    public CompanyRepository(ConnectionPool pool1,
+                             List<ConnectionPool> pools,
+                             @Value("${db.pool.size}") Integer poolSize) {
+        this.pool1 = pool1;
+        this.pools = pools;
+        this.poolSize = poolSize;
+    }
 
     @PostConstruct
     private void init() {
@@ -50,18 +55,4 @@ public class CompanyRepository implements CrudRepository<Integer, Company> {
     public void delete(Company entity) {
         System.out.println("Delete by id method ...");
     }
-
-    @Autowired
-    public void setPool1(ConnectionPool pool1) {
-        this.pool1 = pool1;
-    }
-
-
-    //    public CompanyRepository(ConnectionPool connectionPool) {
-//        this.connectionPool = connectionPool;
-//    }
-//
-//    public static CompanyRepository of(ConnectionPool connectionPool) {
-//        return new CompanyRepository(connectionPool);
-//    }
 }

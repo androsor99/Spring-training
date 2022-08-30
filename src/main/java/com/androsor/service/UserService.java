@@ -1,7 +1,10 @@
 package com.androsor.service;
 
+import com.androsor.database.entity.Company;
 import com.androsor.database.repository.CompanyRepository;
+import com.androsor.database.repository.CrudRepository;
 import com.androsor.database.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * The {@code UserService}
@@ -10,20 +13,16 @@ import com.androsor.database.repository.UserRepository;
  * @version 1.0
  * @createDate 26.08.2022 22:49
  */
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
-    private final CompanyRepository companyRepository;
+    private final CrudRepository<Integer, Company> companyRepository;
 
-    private CompanyService companyService;
 
     public UserService(UserRepository userRepository,
-                       CompanyRepository companyRepository) {
+                       CrudRepository<Integer, Company> companyRepository) {
         this.userRepository = userRepository;
         this.companyRepository = companyRepository;
     }
-
-    public void setCompanyService(CompanyService companyService) {
-        this.companyService = companyService;
-    } //cycle dependency
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.ConstructorArgumentValues;
 import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @version 1.0
  * @createDate 29.08.2022 22:09
  */
+@Component
 public class LogBeanFactoryPostProcessor implements BeanFactoryPostProcessor, PriorityOrdered {
 
     @Override

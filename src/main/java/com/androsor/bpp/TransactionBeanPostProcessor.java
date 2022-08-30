@@ -2,6 +2,7 @@ package com.androsor.bpp;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -16,6 +17,7 @@ import java.util.Map;
  * @version 1.0
  * @createDate 30.08.2022 11:30
  */
+@Component
 public class TransactionBeanPostProcessor implements BeanPostProcessor {
 
     private final Map<String, Class<?>> transactionsBeans = new HashMap<>();

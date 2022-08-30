@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.ConstructorArgumentValues;
 import org.springframework.core.Ordered;
+import org.springframework.stereotype.Component;
 
 /**
  * The {@code LogBeanFactoryPostProcessor}
@@ -13,6 +14,7 @@ import org.springframework.core.Ordered;
  * @version 1.0
  * @createDate 29.08.2022 22:09
  */
+@Component
 public class VerifyPropertyBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {
 
     @Override
