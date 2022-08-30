@@ -1,5 +1,6 @@
 package com.androsor.database.repository;
 
+import com.androsor.bpp.InjectBean;
 import com.androsor.database.pool.ConnectionPool;
 
 /**
@@ -11,13 +12,14 @@ import com.androsor.database.pool.ConnectionPool;
  */
 public class CompanyRepository {
 
-    private final ConnectionPool connectionPool;
+    @InjectBean
+    private ConnectionPool connectionPool;
 
-    public CompanyRepository(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
-
-    public static CompanyRepository of(ConnectionPool connectionPool) {
-        return new CompanyRepository(connectionPool);
-    }
+//    public CompanyRepository(ConnectionPool connectionPool) {
+//        this.connectionPool = connectionPool;
+//    }
+//
+//    public static CompanyRepository of(ConnectionPool connectionPool) {
+//        return new CompanyRepository(connectionPool);
+//    }
 }
