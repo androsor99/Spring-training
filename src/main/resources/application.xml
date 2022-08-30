@@ -8,6 +8,9 @@
 
     <context:component-scan base-package="com.androsor"/>
     <context:property-placeholder location="classpath:application.properties"/>
+<!--    xml - BeanDefinitionReader-->
+<!--    annotation -  ClassPathBeanDefinitionScanner,  AnnotatedBeanDefinitionReader-->
+<!--    java-conf - ConfigurationClassBeanDefinitionReader-->
 
 <!--    <constructor-arg name="args" type="java.util.List">-->
 <!--        <list>-->
