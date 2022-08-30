@@ -22,7 +22,7 @@ import java.util.Optional;
  * @version 1.0
  * @createDate 26.08.2022 22:45
  */
-@Repository
+//@Repository
 @Transaction
 @Auditing
 public class CompanyRepository implements CrudRepository<Integer, Company> {
