@@ -1,9 +1,8 @@
-package com.androsor.service;
+package com.androsor.spring.service;
 
-import com.androsor.database.entity.Company;
-import com.androsor.database.repository.CompanyRepository;
-import com.androsor.database.repository.CrudRepository;
-import com.androsor.database.repository.UserRepository;
+import com.androsor.spring.database.entity.Company;
+import com.androsor.spring.database.repository.CrudRepository;
+import com.androsor.spring.database.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 /**

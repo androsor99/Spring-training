@@ -1,19 +1,14 @@
-package com.androsor.database.repository;
+package com.androsor.spring.database.repository;
 
-import com.androsor.bpp.Auditing;
-import com.androsor.bpp.InjectBean;
-import com.androsor.bpp.Transaction;
-import com.androsor.database.entity.Company;
-import com.androsor.database.pool.ConnectionPool;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.androsor.spring.bpp.Auditing;
+import com.androsor.spring.bpp.Transaction;
+import com.androsor.spring.database.entity.Company;
+import com.androsor.spring.database.pool.ConnectionPool;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 

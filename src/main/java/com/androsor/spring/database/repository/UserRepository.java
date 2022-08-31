@@ -1,6 +1,6 @@
-package com.androsor.database.repository;
+package com.androsor.spring.database.repository;
 
-import com.androsor.database.pool.ConnectionPool;
+import com.androsor.spring.database.pool.ConnectionPool;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;

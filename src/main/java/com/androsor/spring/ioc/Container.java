@@ -1,4 +1,4 @@
-package com.androsor.ioc;
+package com.androsor.spring.ioc;
 
 /**
  * The {@code Container}

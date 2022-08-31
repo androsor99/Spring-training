@@ -1,4 +1,4 @@
-package com.androsor.service;
+package com.androsor.spring.service;
 
 import org.springframework.stereotype.Service;
 

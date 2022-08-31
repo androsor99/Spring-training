@@ -1,14 +1,10 @@
-package com.androsor;
+package com.androsor.spring;
 
-import com.androsor.config.ApplicationConfiguration;
-import com.androsor.database.pool.ConnectionPool;
-import com.androsor.database.repository.CompanyRepository;
-import com.androsor.database.repository.CrudRepository;
-import com.androsor.ioc.Container;
-import com.androsor.service.UserService;
+import com.androsor.spring.config.ApplicationConfiguration;
+import com.androsor.spring.database.pool.ConnectionPool;
+import com.androsor.spring.database.repository.CrudRepository;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.Serializable;
 

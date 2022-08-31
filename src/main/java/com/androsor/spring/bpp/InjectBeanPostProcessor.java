@@ -1,4 +1,4 @@
-package com.androsor.bpp;
+package com.androsor.spring.bpp;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

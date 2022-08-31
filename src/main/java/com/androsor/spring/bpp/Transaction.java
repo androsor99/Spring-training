@@ -1,4 +1,4 @@
-package com.androsor.bpp;
+package com.androsor.spring.bpp;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

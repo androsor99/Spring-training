@@ -1,4 +1,4 @@
-package com.androsor.database.entity;
+package com.androsor.spring.database.entity;
 
 /**
  * The {@code Company}

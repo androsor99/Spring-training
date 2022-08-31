@@ -1,4 +1,4 @@
-package com.androsor.bfpp;
+package com.androsor.spring.bfpp;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;

@@ -1,4 +1,4 @@
-package com.androsor.database.pool;
+package com.androsor.spring.database.pool;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

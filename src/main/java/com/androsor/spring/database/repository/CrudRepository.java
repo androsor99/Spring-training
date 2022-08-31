@@ -1,4 +1,4 @@
-package com.androsor.database.repository;
+package com.androsor.spring.database.repository;
 
 import java.util.Optional;
 

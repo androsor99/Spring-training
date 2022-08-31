@@ -12,7 +12,7 @@
                             scoped-proxy="no"
                             use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
-        <context:include-filter type="assignable" expression="com.androsor.database.repository.CrudRepository"/>
+        <context:include-filter type="assignable" expression="com.androsor.spring.database.repository.CrudRepository"/>
         <context:include-filter type="regex" expression="com\..Repository"/>
     </context:component-scan>
 <!--    <context:property-placeholder location="classpath:application.properties"/>-->
