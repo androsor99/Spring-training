@@ -30,7 +30,6 @@ public class ApplicationRunner {
             context.register(ApplicationConfiguration.class);
             context.getEnvironment().setActiveProfiles("web", "prod");
             context.refresh();
-            //      clazz -> String -> Map<String, Object>
             var connectionPool = context.getBean("pool1", ConnectionPool.class);
             System.out.println(connectionPool);
 
