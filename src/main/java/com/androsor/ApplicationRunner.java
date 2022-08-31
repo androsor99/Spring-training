@@ -1,11 +1,13 @@
 package com.androsor;
 
+import com.androsor.config.ApplicationConfiguration;
 import com.androsor.database.pool.ConnectionPool;
 import com.androsor.database.repository.CompanyRepository;
 import com.androsor.database.repository.CrudRepository;
 import com.androsor.ioc.Container;
 import com.androsor.service.UserService;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.Serializable;
@@ -27,7 +29,7 @@ public class ApplicationRunner {
         System.out.println(Serializable.class.isAssignableFrom(value.getClass()));
 
 
-        try (var context = new ClassPathXmlApplicationContext("application.xml")) {
+        try (var context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class)) {
             //      clazz -> String -> Map<String, Object>
             var connectionPool = context.getBean("pool1", ConnectionPool.class);
             System.out.println(connectionPool);
