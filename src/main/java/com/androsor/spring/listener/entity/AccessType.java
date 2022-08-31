@@ -9,5 +9,5 @@ package com.androsor.spring.listener.entity;
  */
 public enum AccessType {
 
-    CREATE, UPDATE, DELETE
+    CREATE, UPDATE, DELETE, READ
 }
