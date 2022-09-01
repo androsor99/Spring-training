@@ -4,6 +4,7 @@ import com.androsor.spring.bpp.Auditing;
 import com.androsor.spring.bpp.Transaction;
 import com.androsor.spring.database.entity.Company;
 import com.androsor.spring.database.pool.ConnectionPool;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -20,25 +21,17 @@ import java.util.Optional;
  * @version 1.0
  * @createDate 26.08.2022 22:45
  */
-
+@Repository
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 @Transaction
 @Auditing
-@Repository
+@RequiredArgsConstructor
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
     private final ConnectionPool pool1;
     private final List<ConnectionPool> pools;
     @Value("${db.pool.size}")
     private final Integer poolSize;
-
-    public CompanyRepository(ConnectionPool pool1,
-                             List<ConnectionPool> pools,
-                             @Value("${db.pool.size}") Integer poolSize) {
-        this.pool1 = pool1;
-        this.pools = pools;
-        this.poolSize = poolSize;
-    }
 
     @PostConstruct
     private void init() {

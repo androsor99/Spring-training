@@ -1,5 +1,6 @@
 package com.androsor.spring.database.pool;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,17 +17,12 @@ import javax.annotation.PreDestroy;
  * @createDate 26.08.2022 22:43
  */
 @Component("pool1")
+@RequiredArgsConstructor
 public class ConnectionPool {
-
+    @Value("${db.username}")
     private final String username;
+    @Value("${db.pool.size}")
     private final Integer poolSize;
-
-    @Autowired
-    public ConnectionPool(@Value("${db.username}") String username,
-                          @Value("${db.pool.size}") Integer poolSize) {
-        this.username = username;
-        this.poolSize = poolSize;
-    }
 
     @PostConstruct
     private void init() {
