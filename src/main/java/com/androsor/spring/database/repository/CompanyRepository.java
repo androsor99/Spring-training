@@ -7,6 +7,7 @@ import com.androsor.spring.database.pool.ConnectionPool;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -19,10 +20,11 @@ import java.util.Optional;
  * @version 1.0
  * @createDate 26.08.2022 22:45
  */
-//@Repository
+
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 @Transaction
 @Auditing
+@Repository
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
     private final ConnectionPool pool1;

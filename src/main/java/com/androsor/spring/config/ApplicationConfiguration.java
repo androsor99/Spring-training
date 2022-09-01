@@ -21,14 +21,6 @@ import static org.springframework.context.annotation.ComponentScan.Filter;
 
 @Import(WebConfiguration.class)
 @Configuration
-@PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = "com.androsor",
-        useDefaultFilters = false,
-        includeFilters = {
-            @Filter(type = FilterType.ANNOTATION, value = Component.class),
-            @Filter(type = FilterType.ASSIGNABLE_TYPE, value = CrudRepository.class),
-            @Filter(type = FilterType.REGEX, pattern = "com\\..Repository")
-        })
 public class ApplicationConfiguration {
 
         @Bean(name = "pool2")
