@@ -18,7 +18,7 @@ import static org.springframework.context.annotation.ComponentScan.Filter;
  * @version 1.0
  * @createDate 31.08.2022 10:29
  */
-//@ImportResource("classpath:application.xml")
+
 @Import(WebConfiguration.class)
 @Configuration
 @PropertySource("classpath:application.properties")
