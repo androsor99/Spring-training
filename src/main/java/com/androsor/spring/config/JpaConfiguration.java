@@ -1,6 +1,7 @@
 package com.androsor.spring.config;
 
 import com.androsor.spring.config.condition.JpaCondition;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
@@ -15,6 +16,7 @@ import javax.annotation.PostConstruct;
  * @version 1.0
  * @createDate 31.08.2022 21:41
  */
+@Slf4j
 @Conditional(JpaCondition.class)
 @Configuration
 public class JpaConfiguration {
@@ -27,6 +29,6 @@ public class JpaConfiguration {
 
     @PostConstruct
     public void init() {
-        System.out.println("Jpa configuration is enable");
+        log.info("Jpa configuration is enable");
     }
 }

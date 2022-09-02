@@ -1,6 +1,7 @@
 package com.androsor.spring.database.pool;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +17,7 @@ import javax.annotation.PreDestroy;
  * @version 1.0
  * @createDate 26.08.2022 22:43
  */
+@Slf4j
 @Component("pool1")
 @RequiredArgsConstructor
 public class ConnectionPool {
@@ -26,11 +28,11 @@ public class ConnectionPool {
 
     @PostConstruct
     private void init() {
-        System.out.println("Init connection poll");
+        log.info("Init connection poll");
     }
 
     @PreDestroy
     private void destroy() {
-        System.out.println("Clean connection pool");
+        log.info("Clean connection pool");
     }
 }
