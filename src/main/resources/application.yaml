@@ -23,6 +23,9 @@ logging:
   level:
     root: warn
     com.androsor.spring.database.pool.ConnectionPool: info
+  file:
+    name: androsor.log
+    path: /
 
 spring:
   output:
