@@ -21,7 +21,7 @@ db:
 
 logging:
   level:
-    root: warn
+    root: INFO
     com.androsor.spring.database.pool.ConnectionPool: info
   file:
     name: androsor.log
@@ -31,3 +31,13 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: ans851
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
