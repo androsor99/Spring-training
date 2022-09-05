@@ -30,7 +30,7 @@ public class CompanyService {
         return companyRepository.findById(id)
                 .map(entity -> {
                     applicationEventPublisher.publishEvent(new EntityEvent(entity, AccessType.DELETE));
-                    return new CompanyReadDto(entity.id());
+                    return new CompanyReadDto(entity.getId());
                 });
     }
 }
