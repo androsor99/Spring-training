@@ -1,15 +1,11 @@
 package com.androsor.spring.config;
 
 import com.androsor.spring.database.pool.ConnectionPool;
-import com.androsor.spring.database.repository.CrudRepository;
 import com.androsor.spring.database.repository.UserRepository;
 import com.androsor.web.config.WebConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
-import org.springframework.stereotype.Component;
-
-import static org.springframework.context.annotation.ComponentScan.Filter;
 
 /**
  * The {@code ApplicationConfiguration}

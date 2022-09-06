@@ -1,18 +1,9 @@
 package com.androsor.spring;
 
-import com.androsor.spring.config.ApplicationConfiguration;
 import com.androsor.spring.config.DataBaseProperties;
-import com.androsor.spring.database.pool.ConnectionPool;
-import com.androsor.spring.database.repository.CrudRepository;
-import com.androsor.spring.service.CompanyService;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.io.Serializable;
 
 /**
  * The {@code ApplicationRunner}

@@ -1,7 +1,6 @@
 package com.androsor.spring.service;
 
-import com.androsor.spring.database.entity.Company;
-import com.androsor.spring.database.repository.CrudRepository;
+import com.androsor.spring.database.repository.CompanyRepository;
 import com.androsor.spring.dto.CompanyReadDto;
 import com.androsor.spring.listener.entity.AccessType;
 import com.androsor.spring.listener.entity.EntityEvent;
@@ -24,7 +23,7 @@ import java.util.Optional;
 public class CompanyService {
 
     private final UserService userService;
-    private final CrudRepository<Integer, Company> companyRepository;
+    private final CompanyRepository companyRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     @Transactional

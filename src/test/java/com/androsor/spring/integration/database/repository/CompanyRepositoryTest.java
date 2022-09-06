@@ -1,6 +1,8 @@
 package com.androsor.spring.integration.database.repository;
 
+import com.androsor.spring.database.entity.BaseEntity;
 import com.androsor.spring.database.entity.Company;
+import com.androsor.spring.database.repository.CompanyRepository;
 import com.androsor.spring.integration.annatation.IT;
 import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
@@ -13,6 +15,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import javax.persistence.EntityManager;
 
 import java.util.Map;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,14 +24,28 @@ import static org.junit.jupiter.api.Assertions.*;
 @RequiredArgsConstructor
 class CompanyRepositoryTest {
 
+    private static final Integer APPLE_ID = 5;
     private final EntityManager entityManager;
     private final TransactionTemplate transactionTemplate;
+    private final CompanyRepository companyRepository;
+
+    @Test
+    void delete() {
+        var maybeCompany = companyRepository.findById(APPLE_ID);
+        assertTrue(maybeCompany.isPresent());
+        maybeCompany.ifPresent(companyRepository::delete);
+        entityManager.flush();
+        assertTrue(companyRepository.findById(APPLE_ID).isEmpty());
+
+    }
 
     @Test
     void findById() {
-        var company = entityManager.find(Company.class, 2);
-        assertNotNull(company);
-        assertThat(company.getLocales()).hasSize(2);
+        transactionTemplate.executeWithoutResult(tx -> {
+            var company = entityManager.find(Company.class, 1);
+            assertNotNull(company);
+            assertThat(company.getLocales()).hasSize(2);
+        });
     }
 
     @Test

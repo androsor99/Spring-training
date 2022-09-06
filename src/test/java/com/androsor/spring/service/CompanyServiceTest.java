@@ -1,7 +1,7 @@
 package com.androsor.spring.service;
 
 import com.androsor.spring.database.entity.Company;
-import com.androsor.spring.database.repository.CrudRepository;
+import com.androsor.spring.database.repository.CompanyRepository;
 import com.androsor.spring.dto.CompanyReadDto;
 import com.androsor.spring.listener.entity.EntityEvent;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ class CompanyServiceTest {
     @Mock
     private UserService userService;
     @Mock
-    private CrudRepository<Integer, Company> companyRepository;
+    private CompanyRepository companyRepository;
     @Mock
     private ApplicationEventPublisher applicationEventPublisher;
     @InjectMocks
