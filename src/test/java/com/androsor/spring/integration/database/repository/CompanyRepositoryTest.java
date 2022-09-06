@@ -14,6 +14,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.persistence.EntityManager;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -28,6 +29,12 @@ class CompanyRepositoryTest {
     private final EntityManager entityManager;
     private final TransactionTemplate transactionTemplate;
     private final CompanyRepository companyRepository;
+
+    @Test
+    void checkFindByQueries() {
+        var maybeCompany = companyRepository.findByName("Google");
+        var companies = companyRepository.findAllByNameContainingIgnoreCase("a");
+    }
 
     @Test
     void delete() {
