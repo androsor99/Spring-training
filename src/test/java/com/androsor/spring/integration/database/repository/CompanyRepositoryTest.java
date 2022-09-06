@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.persistence.EntityManager;
 
@@ -18,11 +19,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @IT
 @RequiredArgsConstructor
-@Transactional
-@Rollback
 class CompanyRepositoryTest {
 
     private final EntityManager entityManager;
+    private final TransactionTemplate transactionTemplate;
 
     @Test
     void findById() {
