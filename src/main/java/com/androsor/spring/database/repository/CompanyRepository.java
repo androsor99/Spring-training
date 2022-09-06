@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * The {@code CompanyRepository}
@@ -18,9 +20,11 @@ import java.util.Optional;
  */
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
-    Optional<Company> findByName(String name);
+    Optional<Company> findByName(@Param("name2") String name);
 
     List<Company> findAllByNameContainingIgnoreCase(String name);
+
+    Stream<Company> streamAllByNameContainingIgnoreCase(String name);
 
 }
 

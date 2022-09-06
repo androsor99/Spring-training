@@ -17,6 +17,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,8 +33,9 @@ class CompanyRepositoryTest {
 
     @Test
     void checkFindByQueries() {
-        var maybeCompany = companyRepository.findByName("Google");
+        var maybeCompany = companyRepository.findByName("google");
         var companies = companyRepository.findAllByNameContainingIgnoreCase("a");
+        var companyStream = companyRepository.streamAllByNameContainingIgnoreCase("a");
     }
 
     @Test

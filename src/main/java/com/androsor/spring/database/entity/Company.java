@@ -14,17 +14,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.util.HashMap;
 import java.util.Map;
 
+@NamedQuery(
+        name = "Company.findByName",
+        query = "select c from Company c where lower(c.name) = lower(:name2)"
+
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "company")
-public class Company implements BaseEntity<Integer> {
+public class
+Company implements BaseEntity<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
