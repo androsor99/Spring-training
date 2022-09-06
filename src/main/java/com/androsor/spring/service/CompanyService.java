@@ -8,6 +8,7 @@ import com.androsor.spring.listener.entity.EntityEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class CompanyService {
     private final CrudRepository<Integer, Company> companyRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
 
+    @Transactional
     public Optional<CompanyReadDto> findById(Integer id) {
         return companyRepository.findById(id)
                 .map(entity -> {
