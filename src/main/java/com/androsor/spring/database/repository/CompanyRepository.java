@@ -2,6 +2,7 @@ package com.androsor.spring.database.repository;
 
 import com.androsor.spring.database.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.Repository;
@@ -20,6 +21,9 @@ import java.util.stream.Stream;
  */
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
+    @Query("select c from Company c " +
+            "join fetch c.locales cl " +
+            " where c.name = :name2")
     Optional<Company> findByName(@Param("name2") String name);
 
     List<Company> findAllByNameContainingIgnoreCase(String name);
