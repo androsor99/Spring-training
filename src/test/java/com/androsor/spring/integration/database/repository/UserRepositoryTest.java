@@ -5,12 +5,17 @@ import com.androsor.spring.database.entity.User;
 import com.androsor.spring.database.repository.UserRepository;
 import com.androsor.spring.integration.annatation.IT;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.apache.bcel.classfile.Module;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.util.AssertionErrors;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,6 +25,31 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTest {
 
     private final UserRepository userRepository;
+
+    @Test
+    void checkPageable() {
+        var pageable = PageRequest.of(0, 2, Sort.by("id"));
+        var result = userRepository.findAllBy(pageable);
+        assertThat(result).hasSize(2);
+    }
+
+    @Test
+    void checkSort() {
+//        var sortBy = Sort.by("firstname").and(Sort.by("lastname"));
+        var sortBy = Sort.sort(User.class);
+        var sort = sortBy.by(User::getFirstname).and(sortBy.by(User::getLastname));
+        var allUsers = userRepository.findTop3ByBirthDateBefore(LocalDate.now(), sort);
+        assertThat(allUsers).hasSize(3);
+    }
+
+    @Test
+    void checkFirstTop() {
+        var allUsers = userRepository.findTop3ByBirthDateBeforeOrderByBirthDateDesc(LocalDate.now());
+        assertThat(allUsers).hasSize(3);
+        var maybeUser = userRepository.findFirstByOrderByIdDesc();
+        assertTrue(maybeUser.isPresent());
+        maybeUser.ifPresent(user -> assertEquals(5L, user.getId()));
+    }
 
     @Test
     void checkUpdate() {
