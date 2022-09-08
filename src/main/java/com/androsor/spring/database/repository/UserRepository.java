@@ -7,8 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -31,6 +34,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u " +
             "where u.firstname like %:firstname% and u.lastname like %:lastname%")
     List<User> findAllBy(String firstname, String lastname);
+
     @Query(value = "SELECT * FROM users u WHERE u.username = :username",
             nativeQuery = true)
     List<User> findAllByUsername(String username);
@@ -39,7 +43,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "update User u " +
             "set u.role = :role " +
             "where u.id in (:ids)")
-    int updateRole(Role role,Long... ids);
+    int updateRole(Role role, Long... ids);
 
     Optional<User> findFirstByOrderByIdDesc();
 
@@ -47,7 +51,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findTop3ByBirthDateBefore(LocalDate birthDate, Sort sort);
 
-    List<User> findAllBy(Pageable pageable);
+//    @EntityGraph(value = "User.company")
+    @EntityGraph(attributePaths = {"company", "company.locales"})
+    @Query(value = "select u from User u",
+            countQuery = "select count (distinct u.firstname) from User u")
+    Page<User> findAllBy(Pageable pageable);
 
 
 }

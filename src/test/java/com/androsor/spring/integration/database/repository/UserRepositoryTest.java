@@ -5,20 +5,16 @@ import com.androsor.spring.database.entity.User;
 import com.androsor.spring.database.repository.UserRepository;
 import com.androsor.spring.integration.annatation.IT;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.apache.bcel.classfile.Module;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.util.AssertionErrors;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @IT
 @RequiredArgsConstructor
@@ -29,8 +25,13 @@ class UserRepositoryTest {
     @Test
     void checkPageable() {
         var pageable = PageRequest.of(0, 2, Sort.by("id"));
-        var result = userRepository.findAllBy(pageable);
-        assertThat(result).hasSize(2);
+        var slice = userRepository.findAllBy(pageable);
+        slice.forEach(user -> System.out.println(user.getCompany().getName()));
+
+        while (slice.hasNext()) {
+            slice = userRepository.findAllBy(slice.nextPageable());
+            slice.forEach(user -> System.out.println(user.getCompany().getName()));
+        }
     }
 
     @Test
