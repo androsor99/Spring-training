@@ -3,6 +3,8 @@ package com.androsor.spring.database.repository;
 import com.androsor.spring.database.entity.Role;
 import com.androsor.spring.database.entity.User;
 import com.androsor.spring.database.pool.ConnectionPool;
+import com.androsor.spring.dto.PersonalInfo;
+import com.androsor.spring.dto.PersonalInfo2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -62,6 +64,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select u from User u",
             countQuery = "select count (distinct u.firstname) from User u")
     Page<User> findAllBy(Pageable pageable);
+
+//    List<PersonalInfo> findAllByCompanyId(Integer companyId);
+//    <T> List<T> findAllByCompanyId(Integer companyId, Class<T> clazz);
+    @Query(nativeQuery = true,
+    value = "select firstname, " +
+            "lastname, " +
+            "birth_date as birthDate " +
+            "from users " +
+            "where company_id = :companyId")
+    List<PersonalInfo2> findAllByCompanyId(Integer companyId);
 
 
 }
