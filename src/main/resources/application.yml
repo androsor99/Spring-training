@@ -22,7 +22,8 @@ db:
 logging:
   level:
     root: INFO
-    com.androsor.spring.database.pool.ConnectionPool: info
+    com.androsor.spring.database.pool.ConnectionPool: INFO
+    org.springframework.jdbc.core: TRACE
   file:
     name: androsor.log
     path: /
