@@ -1,6 +1,7 @@
 package com.androsor.spring.integration.service;
 
 import com.androsor.spring.database.pool.ConnectionPool;
+import com.androsor.spring.integration.IntegrationTestBase;
 import com.androsor.spring.integration.annatation.IT;
 import com.androsor.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,9 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
  * @version 1.0
  * @createDate 05.09.2022 12:15
  */
-@IT
 @RequiredArgsConstructor
 
-public class UserServiceIT {
+public class UserServiceIT extends IntegrationTestBase {
 
     private final UserService userService;
     private final ConnectionPool pool1;

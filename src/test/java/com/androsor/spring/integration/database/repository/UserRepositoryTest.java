@@ -5,6 +5,7 @@ import com.androsor.spring.database.entity.User;
 import com.androsor.spring.database.repository.UserRepository;
 import com.androsor.spring.dto.PersonalInfo;
 import com.androsor.spring.dto.UserFilter;
+import com.androsor.spring.integration.IntegrationTestBase;
 import com.androsor.spring.integration.annatation.IT;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -22,12 +23,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@IT
-@Sql({
-        "classpath:sql/data.sql"
-})
+
+
 @RequiredArgsConstructor
-class UserRepositoryTest {
+class UserRepositoryTest extends IntegrationTestBase {
 
     private final UserRepository userRepository;
 
@@ -52,7 +51,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Commit
     void checkAuditing() {
         var ivan = userRepository.findById(1L).get();
         ivan.setBirthDate(ivan.getBirthDate().plusYears(1L));

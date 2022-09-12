@@ -4,6 +4,7 @@ import com.androsor.spring.ApplicationRunner;
 import com.androsor.spring.config.DataBaseProperties;
 import com.androsor.spring.database.entity.Company;
 import com.androsor.spring.dto.CompanyReadDto;
+import com.androsor.spring.integration.IntegrationTestBase;
 import com.androsor.spring.integration.annatation.IT;
 import com.androsor.spring.listener.entity.EntityEvent;
 import com.androsor.spring.service.CompanyService;
@@ -35,12 +36,11 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  * @version 1.0
  * @createDate 05.09.2022 11:17
  */
-@IT
 @RequiredArgsConstructor
 //@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 //@ExtendWith(SpringExtension.class)
 //@ContextConfiguration(classes = ApplicationRunner.class, initializers = ConfigDataApplicationContextInitializer.class)
-public class CompanyServiceIT {
+public class CompanyServiceIT extends IntegrationTestBase {
 
     private static final Integer COMPANY_ID = 1;
 
