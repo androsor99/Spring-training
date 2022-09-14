@@ -33,7 +33,6 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
-
   output:
     ansi:
       enabled: ALWAYS
