@@ -1,28 +1,19 @@
 package com.androsor.spring.integration.database.repository;
 
-import com.androsor.spring.database.entity.BaseEntity;
 import com.androsor.spring.database.entity.Company;
 import com.androsor.spring.database.repository.CompanyRepository;
 import com.androsor.spring.integration.IntegrationTestBase;
-import com.androsor.spring.integration.annatation.IT;
 import lombok.RequiredArgsConstructor;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.annotation.Commit;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.persistence.EntityManager;
-
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RequiredArgsConstructor
 class CompanyRepositoryTest extends IntegrationTestBase {
