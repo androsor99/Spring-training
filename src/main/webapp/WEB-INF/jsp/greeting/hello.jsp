@@ -5,6 +5,6 @@
     <title>Hello</title>
 </head>
 <body>
-    Hello ${requestScope.user.username}!
+    Hello ${requestScope.userRead.username}!
 </body>
 </html>

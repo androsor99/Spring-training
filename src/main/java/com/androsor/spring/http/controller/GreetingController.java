@@ -1,9 +1,12 @@
 package com.androsor.spring.http.controller;
 
+import com.androsor.spring.database.entity.Role;
 import com.androsor.spring.dto.UserReadDto;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * The {@code GreetingController}
@@ -28,12 +33,18 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes("user")
 public class GreetingController {
 
+    @ModelAttribute("roles")
+    public List<Role> roles() {
+        return Arrays.asList(Role.values());
+    }
+
 //    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @GetMapping("/hello")
-    public ModelAndView hello(ModelAndView modelAndView, HttpServletRequest request) {
-        modelAndView.setViewName("greeting/hello");
-        modelAndView.addObject("user", new UserReadDto(1L, "Ivan"));
-        return modelAndView;
+    public String hello(Model model, HttpServletRequest request,
+                        @ModelAttribute("userRead") UserReadDto userReadDto) {
+//        modelAndView.setViewName("greeting/hello");
+        model.addAttribute("user", new UserReadDto(1L, "Ivan"));
+        return "greeting/hello";
     }
 
     @GetMapping("/hello/{id}")
@@ -50,9 +61,8 @@ public class GreetingController {
     }
 
     @GetMapping("/bye")
-    public ModelAndView bye(ModelAndView modelAndView,
-                            @SessionAttribute("user") UserReadDto user) {
-        modelAndView.setViewName("greeting/bye");
-        return modelAndView;
+    public String bye(@SessionAttribute("user") UserReadDto user) {
+//        modelAndView.setViewName("greeting/bye");
+        return "greeting/bye";
     }
 }
