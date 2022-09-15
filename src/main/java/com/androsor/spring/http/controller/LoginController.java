@@ -20,12 +20,14 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage() {
+
         return "user/login";
     }
 
     @PostMapping("/login")
     public String login(Model model,
                         @ModelAttribute("login") LoginDto loginDto) {
-        return "user/login";
+//        return "forward:/WEB-INF/jsp/user/login.jsp";
+        return "redirect:https://banana.by";
     }
 }
