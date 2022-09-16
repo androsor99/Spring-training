@@ -39,13 +39,13 @@ public class GreetingController {
     }
 
 //    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    @GetMapping("/hello")
-    public String hello(Model model, HttpServletRequest request,
-                        @ModelAttribute("userRead") UserReadDto userReadDto) {
-//        modelAndView.setViewName("greeting/hello");
-        model.addAttribute("user", new UserReadDto(1L, "Ivan"));
-        return "greeting/hello";
-    }
+//    @GetMapping("/hello")
+//    public String hello(Model model, HttpServletRequest request,
+//                        @ModelAttribute("userRead") UserReadDto userReadDto) {
+////        modelAndView.setViewName("greeting/hello");
+//        model.addAttribute("user", new UserReadDto(1L, "Ivan"));
+//        return "greeting/hello";
+//    }
 
     @GetMapping("/hello/{id}")
     public ModelAndView hello2(ModelAndView modelAndView, HttpServletRequest request,

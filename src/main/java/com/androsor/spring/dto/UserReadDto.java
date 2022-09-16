@@ -1,6 +1,9 @@
 package com.androsor.spring.dto;
 
+import com.androsor.spring.database.entity.Role;
 import lombok.Value;
+
+import java.time.LocalDate;
 
 /**
  * The {@code UserReadDto}
@@ -14,4 +17,9 @@ public class UserReadDto {
 
     Long id;
     String username;
+    LocalDate birthDate;
+    String firstname;
+    String lastname;
+    Role role;
+    CompanyReadDto companyReadDto;
 }

@@ -1,5 +1,7 @@
 package com.androsor.spring.dto;
 
+import lombok.Value;
+
 /**
  * The {@code CompanyReadDto}
  *
@@ -7,5 +9,9 @@ package com.androsor.spring.dto;
  * @version 1.0
  * @createDate 31.08.2022 12:30
  */
-public record CompanyReadDto(Integer id) {
+@Value
+public class CompanyReadDto {
+
+    Integer id;
+    String name;
 }
