@@ -3,6 +3,7 @@ package com.androsor.spring.dto;
 import com.androsor.spring.database.entity.Role;
 import lombok.Value;
 import lombok.experimental.FieldNameConstants;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 public class UserCreateEditDto {
 
     String username;
+    @DateTimeFormat(pattern = "yyy-MM-dd")
     LocalDate birthDate;
     String firstname;
     String lastname;
