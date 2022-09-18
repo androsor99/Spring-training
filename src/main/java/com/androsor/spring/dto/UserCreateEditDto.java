@@ -22,7 +22,7 @@ import java.time.LocalDate;
 public class UserCreateEditDto {
 
     String username;
-    @DateTimeFormat(pattern = "yyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate birthDate;
     String firstname;
     String lastname;

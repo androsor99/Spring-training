@@ -1,6 +1,8 @@
 package com.androsor.spring.http.controller;
 
+import com.androsor.spring.database.entity.Role;
 import com.androsor.spring.dto.UserCreateEditDto;
+import com.androsor.spring.service.CompanyService;
 import com.androsor.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class UserController {
 
     private final UserService userService;
+    private final CompanyService companyService;
 
     @GetMapping
     public String findAll(Model model) {
@@ -42,7 +45,9 @@ public class UserController {
                            @PathVariable("id") Long id) {
         return userService.findById(id)
                 .map(user -> {
-                    model.addAttribute("user", userService.findById(id));
+                    model.addAttribute("user", user);
+                    model.addAttribute("roles", Role.values());
+                    model.addAttribute("companies", companyService.findAll());
                     return "user/user";
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -63,12 +68,12 @@ public class UserController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-//    @DeleteMapping("/{id}")
-    @PostMapping("/{id}/delete") // временно и неправильно
+    //    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") Long id) {
-        if(!userService.delete(id)) {
+        if (!userService.delete(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return "redirect:/users}";
+        return "redirect:/users";
     }
 }
