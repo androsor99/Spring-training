@@ -65,8 +65,8 @@ public class UserController {
 //    @ResponseStatus(HttpStatus.CREATED)
     public String create(@ModelAttribute UserCreateEditDto user, RedirectAttributes redirectAttributes) {
 //        if (true) { // validation
-////            redirectAttributes.addAttribute("username", user.getUsername());
-////            redirectAttributes.addAttribute("firstname", user.getFirstname());
+//            redirectAttributes.addAttribute("username", user.getUsername());
+//            redirectAttributes.addAttribute("firstname", user.getFirstname());
 //            redirectAttributes.addFlashAttribute("user", user);
 //            return "redirect:/users/registration";
 //        }
