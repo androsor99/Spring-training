@@ -2,6 +2,7 @@ package com.androsor.spring.http.controller;
 
 import com.androsor.spring.database.entity.Role;
 import com.androsor.spring.dto.UserCreateEditDto;
+import com.androsor.spring.dto.UserFilter;
 import com.androsor.spring.service.CompanyService;
 import com.androsor.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,9 +36,8 @@ public class UserController {
     private final CompanyService companyService;
 
     @GetMapping
-    public String findAll(Model model) {
-        model.addAttribute("users", userService.findAll());
-//        model.addAttribute("users", userService.findAll(filter));
+    public String findAll(Model model, UserFilter filter) {
+        model.addAttribute("users", userService.findAll(filter));
         return "user/users";
     }
 

@@ -3,6 +3,7 @@ package com.androsor.spring.service;
 import com.androsor.spring.database.repository.CompanyRepository;
 import com.androsor.spring.database.repository.UserRepository;
 import com.androsor.spring.dto.UserCreateEditDto;
+import com.androsor.spring.dto.UserFilter;
 import com.androsor.spring.dto.UserReadDto;
 import com.androsor.spring.mapper.UserCreateEditMapper;
 import com.androsor.spring.mapper.UserReadMapper;
@@ -32,6 +33,13 @@ public class UserService {
 
     public List<UserReadDto> findAll() {
         return userRepository.findAll()
+                .stream()
+                .map(userReadMapper::map)
+                .toList();
+    }
+
+    public List<UserReadDto> findAll(UserFilter filter) {
+        return userRepository.findAllByFilter(filter)
                 .stream()
                 .map(userReadMapper::map)
                 .toList();
