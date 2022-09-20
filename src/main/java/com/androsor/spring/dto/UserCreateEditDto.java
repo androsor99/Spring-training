@@ -1,6 +1,8 @@
 package com.androsor.spring.dto;
 
 import com.androsor.spring.database.entity.Role;
+import com.androsor.spring.validation.UserInfo;
+import com.androsor.spring.validation.group.CreateAction;
 import lombok.NonNull;
 import lombok.Value;
 import lombok.experimental.FieldNameConstants;
@@ -24,6 +26,7 @@ import java.time.LocalDate;
  */
 @Value
 @FieldNameConstants
+@UserInfo(groups = CreateAction.class)
 public class UserCreateEditDto {
 
     @Email
@@ -32,11 +35,9 @@ public class UserCreateEditDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate birthDate;
 
-    @NotBlank
     @Size(min = 3, max = 64)
     String firstname;
 
-    @NotBlank
     String lastname;
 
     Role role;

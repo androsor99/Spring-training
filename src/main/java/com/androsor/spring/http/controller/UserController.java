@@ -7,6 +7,8 @@ import com.androsor.spring.dto.UserFilter;
 import com.androsor.spring.dto.UserReadDto;
 import com.androsor.spring.service.CompanyService;
 import com.androsor.spring.service.UserService;
+import com.androsor.spring.validation.group.CreateAction;
+import com.androsor.spring.validation.group.UpdateAction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import javax.validation.groups.Default;
 
 /**
  * The {@code UserController}
@@ -44,7 +47,9 @@ public class UserController {
     private final CompanyService companyService;
 
     @GetMapping
-    public String findAll(Model model, UserFilter filter, Pageable pageable) {
+    public String findAll(Model model,
+                          UserFilter filter,
+                          Pageable pageable) {
         var page = userService.findAll(filter, pageable);
         model.addAttribute("users", PageResponse.of(page));
         model.addAttribute("filter", filter);
@@ -65,7 +70,8 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public String registration(Model model,@ModelAttribute("user") UserCreateEditDto user) {
+    public String registration(Model model,
+                               @ModelAttribute("user") UserCreateEditDto user) {
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         model.addAttribute("companies", companyService.findAll());
@@ -73,7 +79,7 @@ public class UserController {
     }
     @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)
-    public String create(@ModelAttribute @Validated UserCreateEditDto user,
+    public String create(@ModelAttribute @Validated({Default.class, CreateAction.class}) UserCreateEditDto user,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) { // validation
@@ -86,7 +92,7 @@ public class UserController {
 
 //    @PutMapping("/{id}")
     @PostMapping("/{id}/update") // временно и неправильно
-    public String update(@ModelAttribute @Validated UserCreateEditDto user,
+    public String update(@ModelAttribute @Validated({Default.class, UpdateAction.class}) UserCreateEditDto user,
                          @PathVariable("id") Long id) {
         return userService.update(id, user)
                 .map(it -> "redirect:/users/{id}")
