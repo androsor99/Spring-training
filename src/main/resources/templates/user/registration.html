@@ -12,11 +12,11 @@
         <label for="birthDate">BirthDate:
             <input id="birthDate" type="date" name="birthDate" th:value="*{birthDate}">
         </label><br>
-        <label for="lastname">Lastname:
-            <input id="lastname" type="text" name="lastname" th:value="*{lastname}">
-        </label><br>
         <label for="firstname">Firstname:
             <input id="firstname" type="text" name="firstname" th:value="*{firstname}">
+        </label><br>
+        <label for="lastname">Lastname:
+            <input id="lastname" type="text" name="lastname" th:value="*{lastname}">
         </label><br>
         <div th:each="role : ${roles}">
             <input th:id="${role}" type="radio" name="role" th:value="${role}" th:checked="${role == user.role}">
@@ -34,6 +34,9 @@
             </label>
         </div>
         <button type="submit">Register</button>
+        <div th:if="${errors}">
+            <p th:each="error : ${errors}" th:text="${error.defaultMessage}">Error message</p>
+        </div>
     </form>
 </body>
 </html>
