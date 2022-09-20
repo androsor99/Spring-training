@@ -1,11 +1,15 @@
 package com.androsor.spring.http.controller;
 
 import com.androsor.spring.database.entity.Role;
+import com.androsor.spring.dto.PageResponse;
 import com.androsor.spring.dto.UserCreateEditDto;
 import com.androsor.spring.dto.UserFilter;
+import com.androsor.spring.dto.UserReadDto;
 import com.androsor.spring.service.CompanyService;
 import com.androsor.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,8 +40,10 @@ public class UserController {
     private final CompanyService companyService;
 
     @GetMapping
-    public String findAll(Model model, UserFilter filter) {
-        model.addAttribute("users", userService.findAll(filter));
+    public String findAll(Model model, UserFilter filter, Pageable pageable) {
+        var page = userService.findAll(filter, pageable);
+        model.addAttribute("users", PageResponse.of(page));
+        model.addAttribute("filter", filter);
         return "user/users";
     }
 
