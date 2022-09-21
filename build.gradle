@@ -30,6 +30,8 @@ dependencies {
     implementation 'com.querydsl:querydsl-jpa'
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation "org.springdoc:springdoc-openapi-ui:${versions.springdoc}"
+
 
 
     annotationProcessor 'com.querydsl:querydsl-apt'
