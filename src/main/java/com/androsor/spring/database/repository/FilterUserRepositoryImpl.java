@@ -8,18 +8,14 @@ import com.androsor.spring.dto.UserFilter;
 import com.querydsl.jpa.impl.JPAQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.persistence.EntityManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static com.androsor.spring.database.entity.QUser.*;
+import static com.androsor.spring.database.entity.QUser.user;
 
 /**
  * The {@code FilterUserRepositoryImpl}
