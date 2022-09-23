@@ -67,7 +67,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll(predicate, pageable)
                 .map(userReadMapper::map);
     }
-    @PreAuthorize(("hasAuthority('ADMIN')"))
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 //    @PostAuthorize("returnObject")
     public Optional<UserReadDto> findById(Long id) {
         return userRepository.findById(id)
