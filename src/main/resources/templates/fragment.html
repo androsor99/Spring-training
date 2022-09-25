@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <meta charset="UTF-8">
     <title>Fragments</title>
 </head>
 <body>
     <div th:fragment="header">
-        <span th:text="${#authentication.principal.username}">Username</span>
+        <div sec:authorize="isAuthenticated()">
+            Authenticated as <span sec:authentication="name"></span></div>
+<!--        <span th:text="${#authentication.principal.username}">Username</span>-->
         <form th:action="@{/logout}" method="post">
             <button type="submit">Logout</button>
         </form>
