@@ -2,12 +2,14 @@ package com.androsor.spring.aop;
 
 import com.androsor.spring.validation.UserInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The {@code FirstAspect}
@@ -86,8 +88,17 @@ public class FirstAspect {
     public void anyFindByIdServiceMethod() {
     }
 
-    @Before("anyFindByIdServiceMethod()")
-    public void addLogging() {
-        log.info("invoke findById method");
+    @Before(value = "anyFindByIdServiceMethod() " +
+            "&& args(id) " +
+            "&& target(service) " +
+            "&& this(serviceProxy)" +
+            "&& @within(transactional)",
+            argNames = "joinPoint,id,service,serviceProxy,transactional")
+    public void addLogging(JoinPoint joinPoint,
+                           Object id,
+                           Object service,
+                           Object serviceProxy,
+                           Transactional transactional) {
+        log.info("invoke findById method in class {}, with id {}", service, id);
     }
 }
