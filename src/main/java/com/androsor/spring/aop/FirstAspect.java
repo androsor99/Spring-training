@@ -1,7 +1,9 @@
 package com.androsor.spring.aop;
 
 import com.androsor.spring.validation.UserInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Component;
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Controller;
  * @version 1.0
  * @createDate 27.09.2022 11:41
  */
-
+@Slf4j
 @Aspect
 @Component
 public class FirstAspect {
@@ -82,5 +84,10 @@ public class FirstAspect {
      */
     @Pointcut("execution(public * com.androsor.spring.service.*Service.findById(*))")
     public void anyFindByIdServiceMethod() {
+    }
+
+    @Before("anyFindByIdServiceMethod()")
+    public void addLogging() {
+        log.info("invoke findById method");
     }
 }
