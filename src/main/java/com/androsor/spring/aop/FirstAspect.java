@@ -3,9 +3,11 @@ package com.androsor.spring.aop;
 import com.androsor.spring.validation.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -123,5 +125,23 @@ public class FirstAspect {
     @After("anyFindByIdServiceMethod() && target(service)")
     public void addLoggingAfterFinally(Object service) {
         log.info("after (finally) - invoked findById method in class {}", service);
+    }
+
+    @Around(value = "anyFindByIdServiceMethod() " +
+            "&& target(service) " +
+            "&& args(id)",
+            argNames = "pjp,service,id")
+    public Object addLoggingAround(ProceedingJoinPoint pjp, Object service, Object id) throws Throwable {
+        log.info("AROUND before - invoke findById method in class {}, with id {}", service, id);
+        try {
+            var result = pjp.proceed();
+            log.info("AROUND after returning - invoked findById method in class {}, result {}", service, result);
+            return result;
+        } catch (Throwable ex) {
+            log.info("AROUND after throwing - invoked findById method in class {}, exception {}: {}", service, ex.getClass(), ex.getMessage());
+            throw ex;
+        } finally {
+            log.info("AROUND after (finally) - invoked findById method in class {}", service);
+        }
     }
 }
