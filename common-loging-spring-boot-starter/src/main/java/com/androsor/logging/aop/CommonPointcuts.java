@@ -1,4 +1,4 @@
-package com.androsor.spring.aop;
+package com.androsor.logging.aop;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  * @createDate 27.09.2022 22:25
  */
 @Aspect
-@Component
 public class CommonPointcuts {
 
     /*
@@ -25,7 +24,7 @@ public class CommonPointcuts {
     /*
         within - check class type name
     */
-    @Pointcut("within(com.androsor.spring.service..*Service)")
+    @Pointcut("within(com.androsor.*.service..*Service)")
     public void isServiceLayer() {
     }
 }

@@ -1,20 +1,15 @@
-package com.androsor.spring.aop;
+package com.androsor.logging.aop;
 
-import com.androsor.spring.validation.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
-import org.springframework.data.repository.Repository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -26,56 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Slf4j
 @Aspect
-@Component
-@Order(1)
 public class FirstAspect {
-
-    /*
-        this - check AOP proxy class type
-        target - check target object class type
-     */
-    @Pointcut("this(org.springframework.data.repository.Repository)")
-    //    @Pointcut("target(org.springframework.data.repository.Repository)")
-    public void isRepositoryLayer() {
-
-    }
-
-    /*
-       @annotation - check annotation on method level
-    */
-    @Pointcut("com.androsor.spring.aop.CommonPointcuts.isControllerLayer() && @annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void hasGetMapping() {
-    }
-
-    /*
-        args - check method param type
-        * - any param type
-        .. - 0+ any params type
-     */
-    @Pointcut("com.androsor.spring.aop.CommonPointcuts.isControllerLayer() && args(org.springframework.ui.Model,..)")
-    public void hasModelParam() {
-    }
-
-    /*
-       @args - check annotation on the param type
-       * - any param type
-       .. - 0+ any params type
-    */
-    @Pointcut("com.androsor.spring.aop.CommonPointcuts.isControllerLayer() && @args(com.androsor.spring.validation.UserInfo,..)")
-    public void hasUserInfoParamAnnotation() {
-    }
-
-    /*
-      bean - check bean name
-   */
-    @Pointcut("bean(*Service)")
-    public void isServiceLayerBean() {
-    }
 
     /*
         execution(modifiers-pattern? ret-type-pattern declaring-type-pattern?name-pattern(param-pattern) throws-pattern?)
      */
-    @Pointcut("execution(public * com.androsor.spring.service.*Service.findById(*))")
+    @Pointcut("execution(public * com.androsor.*.service.*Service.findById(*))")
     public void anyFindByIdServiceMethod() {
     }
 

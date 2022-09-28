@@ -1,2 +1,3 @@
 rootProject.name = 'spring-training'
+include 'common-loging-spring-boot-starter'
 
